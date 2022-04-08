@@ -6,12 +6,25 @@ use Illuminate\Http\Request;
 
 class CobaController extends Controller
 {
-    public function index ()
+    public function index()
     {
-        return 'test berhasil';
+            return 'test berhasil';
     }
-    public function urutan ($ke)
+
+    public function urutan($ke)
     {
-        return view ('urutan', ['ke' => $ke]) ;
+
+        $numbers = [
+                ['ke' => $ke, 'nomor' => 20],
+                ['ke' => $ke, 'nomor' => 30],
+                ['ke' => $ke, 'nomor' => 40],
+        ];
+
+
+            return view ('urutan', compact ('numbers'));
+    }
+    public function coba($ke)
+    {
+            return view ('coba', ['ke' => $ke]);
     }
 }

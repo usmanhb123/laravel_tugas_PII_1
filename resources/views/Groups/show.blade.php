@@ -64,7 +64,17 @@ $jumlah_keluar = $group->member_groups->where('status', 2)->count();
         <td>{{$jumlah_keluar}} Anggota</td>
     </tr>
 </table>
+<small>
 
+    <i>
+        Notes :
+
+        <br>
+        <li>Anggota Aktif adalah anggota yang saat ini sedang aktif dalam group tersebut.</li>
+        <li>Anggota keluar berarti adalah anggota yang pernah masuk sebelumnya lalu keluar.</li>
+    </i>
+</small>
+<br>
 <div class="text-right">
 
 <form action="/groups/{{$group['id']}}" method="POST">

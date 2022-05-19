@@ -48,7 +48,7 @@
     $jumlah = $group->member_groups->where('status', 1)->count();
     $jumlah_keluar = $group->member_groups->where('status', 2)->count();
 @endphp <br>
-<p>Anggota : {{$jumlah}} anggota
+<p>Anggota Aktif : {{$jumlah}} anggota
   <br>
   Anggota Keluar : {{$jumlah_keluar}} anggota</p>
 

@@ -55,7 +55,7 @@
                         
                     </tr>
                     <tr>
-                        <td><h3>History Groups</h3></td>
+                        <td><h3>Pernah diikuti</h3></td>
                         <td><h3>:</h3></td>
                         <td>
                             @php

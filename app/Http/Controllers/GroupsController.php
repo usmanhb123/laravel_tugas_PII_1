@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Groups;
+use App\Models\Member_groups;
+use App\Models\Friends;
 use Illuminate\Http\Request;
 
 class GroupsController extends Controller
@@ -26,6 +28,48 @@ class GroupsController extends Controller
     public function create()
     {
      return view ('groups.create');
+    }
+    public function createmember($id)
+    {
+
+        $data['friends'] = Friends::all();
+        $data['group'] = Groups::where('id',$id)->first();
+     return view ('groups.createmember', $data);
+    }
+    public function deletemember($id)
+    {
+        Member_groups::where('id', $id)->update(['status' => 2]);
+        
+        return redirect('groups'); 
+    }
+    
+    public function storemember(Request $request, $id)
+    {
+        $cek = Friends::all();
+        foreach($cek as $f){
+            $isi = 'member'. $f->id;
+
+            $member = $request[$isi];
+
+            if($member != NULL){
+                $cekmem = Member_groups::where('groups_id', $id)->where('friends_id', $member)->first();
+
+                if($cekmem == NULL){
+                    $save = new Member_groups;
+                    $save->groups_id = $id;
+                    $save->friends_id = $member;
+                    $save->status = 1;
+                    $save->save();
+                }else{
+                    Member_groups::where('id', $cekmem->id)->update(['status' => 1]);
+                }
+            }
+
+        }
+
+        return redirect('groups'); 
+
+
     }
 
     /**
@@ -90,8 +134,7 @@ class GroupsController extends Controller
             'name' => 'required|max:255',
             'description' => 'required',
         ]);
- 
-        groups::find($id)->update([
+        Groups::where('id', $id)->update([
             'name' => $request->name,
             'description' => $request->description
         ]);
@@ -109,6 +152,7 @@ class GroupsController extends Controller
     {
     
         Groups::find($id)->delete();
+        Member_groups::where('groups_id', $id)->delete();
         return redirect('/groups');
     }
 }

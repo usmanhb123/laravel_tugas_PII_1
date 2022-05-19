@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2022 at 11:08 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.28
+-- Waktu pembuatan: 18 Bulan Mei 2022 pada 22.50
+-- Versi server: 10.4.21-MariaDB
+-- Versi PHP: 7.4.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `laravelpertama`
+-- Database: `tugas_pii`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `failed_jobs`
+-- Struktur dari tabel `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -40,36 +40,35 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `friends`
+-- Struktur dari tabel `friends`
 --
 
 CREATE TABLE `friends` (
   `id` int(20) NOT NULL,
-  `groups_id` int(11) NOT NULL,
   `nama` varchar(200) NOT NULL,
-  `no_telp` int(20) NOT NULL,
+  `no_telp` varchar(20) NOT NULL,
   `alamat` varchar(200) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `friends`
+-- Dumping data untuk tabel `friends`
 --
 
-INSERT INTO `friends` (`id`, `groups_id`, `nama`, `no_telp`, `alamat`, `created_at`, `updated_at`) VALUES
-(1, 4, 'Nico Firmansyah', 857228703, 'Cirebon', '2022-04-15 12:01:08', '2022-04-15 12:01:08'),
-(2, 4, 'Yola', 8978989, 'Bandung', '2022-04-15 12:01:08', '2022-04-15 12:01:08'),
-(3, 5, 'Sonny', 89987878, 'Jakarta', '2022-04-15 12:01:08', '2022-04-15 12:01:08'),
-(4, 5, 'Iwan', 897787878, 'Bandung', '2022-04-15 12:01:08', '2022-04-15 12:01:08'),
-(5, 5, 'Murni', 89878798, 'Cirebon', '2022-04-15 12:01:08', '2022-04-15 12:01:08'),
-(114, 4, 'Nico Baruu', 99877, 'Cirebon Baru', '2022-04-19 11:00:05', '2022-04-19 11:00:05'),
-(118, 4, 'nama baru', 8, 'baru alamat', '2022-05-10 09:24:08', '2022-05-10 09:24:08');
+INSERT INTO `friends` (`id`, `nama`, `no_telp`, `alamat`, `created_at`, `updated_at`) VALUES
+(1, 'Fredi', '083838278987', 'Cirebon', '2022-04-15 12:01:08', '2022-04-15 12:01:08'),
+(2, 'Usman', '088898887898', 'Bandung', '2022-04-15 12:01:08', '2022-04-15 12:01:08'),
+(3, 'Bahtiar', '081567676576', 'Jakarta', '2022-04-15 12:01:08', '2022-04-15 12:01:08'),
+(4, 'Iwan', '08436776576', 'Bandung', '2022-04-15 12:01:08', '2022-04-15 12:01:08'),
+(5, 'Joko', '087662787367', 'Cirebon', '2022-04-15 12:01:08', '2022-04-15 12:01:08'),
+(114, 'Dwi', '08788278372', 'Bogor', '2022-04-19 11:00:05', '2022-04-19 11:00:05'),
+(118, 'Koko', '089228798272', 'Cianjur', '2022-05-10 09:24:08', '2022-05-10 09:24:08');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `groups`
+-- Struktur dari tabel `groups`
 --
 
 CREATE TABLE `groups` (
@@ -81,17 +80,43 @@ CREATE TABLE `groups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `groups`
+-- Dumping data untuk tabel `groups`
 --
 
 INSERT INTO `groups` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(4, 'Keluarga', 'Keluarga Inti', '2022-05-10 13:16:02', '2022-05-10 13:16:02'),
-(5, 'Kerabat', 'Kerabat Dekat', '2022-05-10 13:16:21', '2022-05-10 13:16:21');
+(4, 'Al-Ikhlas', 'Teman Kampus', '2022-05-10 13:16:02', '2022-05-17 14:56:30'),
+(5, 'Al-Muhaimin', 'Teman Kuliah', '2022-05-10 13:16:21', '2022-05-10 13:16:21');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Struktur dari tabel `member_groups`
+--
+
+CREATE TABLE `member_groups` (
+  `id` int(11) NOT NULL,
+  `friends_id` int(11) NOT NULL,
+  `groups_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `member_groups`
+--
+
+INSERT INTO `member_groups` (`id`, `friends_id`, `groups_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, 5, 1, '2022-05-16 13:31:01', '2022-05-16 13:31:01'),
+(2, 4, 5, 1, '2022-05-16 13:31:01', '2022-05-16 14:00:01'),
+(3, 1, 4, 1, '2022-05-16 13:32:20', '2022-05-16 13:32:20'),
+(4, 118, 4, 1, '2022-05-16 13:32:20', '2022-05-16 13:32:20'),
+(5, 4, 4, 2, '2022-05-16 13:41:38', '2022-05-16 13:54:00');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -101,7 +126,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Dumping data untuk tabel `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -114,7 +139,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_resets`
+-- Struktur dari tabel `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -126,7 +151,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `personal_access_tokens`
+-- Struktur dari tabel `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
@@ -144,7 +169,7 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -163,38 +188,44 @@ CREATE TABLE `users` (
 --
 
 --
--- Indexes for table `failed_jobs`
+-- Indeks untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indexes for table `friends`
+-- Indeks untuk tabel `friends`
 --
 ALTER TABLE `friends`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `groups`
+-- Indeks untuk tabel `groups`
 --
 ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `migrations`
+-- Indeks untuk tabel `member_groups`
+--
+ALTER TABLE `member_groups`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `password_resets`
+-- Indeks untuk tabel `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indexes for table `personal_access_tokens`
+-- Indeks untuk tabel `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -202,48 +233,54 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `failed_jobs`
+-- AUTO_INCREMENT untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `friends`
+-- AUTO_INCREMENT untuk tabel `friends`
 --
 ALTER TABLE `friends`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 
 --
--- AUTO_INCREMENT for table `groups`
+-- AUTO_INCREMENT untuk tabel `groups`
 --
 ALTER TABLE `groups`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT untuk tabel `member_groups`
+--
+ALTER TABLE `member_groups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `personal_access_tokens`
+-- AUTO_INCREMENT untuk tabel `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;

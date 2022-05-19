@@ -15,4 +15,8 @@ class Groups extends Model
 {
 	return $this->hasMany('App\Models\Friends');
 }
+public function member_groups()
+{
+	return $this->hasMany('App\Models\Member_groups');
+}
 }

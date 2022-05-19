@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Friends;
+use App\Models\Member_groups;
 
 class CobaController extends Controller
 {
@@ -27,7 +28,7 @@ class CobaController extends Controller
 
     public function index ()
     {
-        $friends = Friends::orderBy('id', 'desc')->paginate(3);
+        $friends = Friends::orderBy('id', 'desc')->paginate(4);
         return view ('friends.index', compact('friends'));
     }
 
@@ -90,6 +91,7 @@ class CobaController extends Controller
     public function destroy($id)
     {
         friends::find($id)->delete();
+        Member_groups::where('friends_id', $id)->delete();
         return redirect('/');
     }
     

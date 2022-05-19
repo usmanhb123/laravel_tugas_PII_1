@@ -3,33 +3,40 @@
 @section('title', 'Friends')
 
     @section('content')
-        
-    <form action="/friends/{{ $friend['id'] }}" method="POST">
-      @csrf
-      @method('PUT')
-      <div class="mb-3">
-        <label for="nama" class="form-label">Nama</label>
-        <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama') ? old('nama') : $friend['nama'] }}">
-        @error('nama')
-        <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-      </div>
-      <div class="mb-3">
-        <label for="no_telp" class="form-label">No Telp</label>
-        <input type="text" class="form-control" id="no_telp" name="no_telp" value="{{ old('no_telp') ? old('no_telp') : $friend['no_telp'] }}">
-        @error('no_telp')
-        <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-      </div>
-      <div class="mb-3">
-        <label for="alamat" class="form-label">Alamat</label>
-        <input type="text" class="form-control" id="alamat" name="alamat" value="{{ old('alamat') ? old('alamat') : $friend['alamat'] }}">
-        @error('alamat')
-        <div class="alert alert-danger">{{ $message }}</div>
-      @enderror
-      </div>
-     
-      <button type="submit" class="btn btn-info">Submit</button>
-    </form>
+        <div class="row">
+          <div class="col-lg-4">
+            <img src="{{asset('1.gif')}}" alt="" width="100%">
+          </div>
+          <div class="col-lg-8">
+<h3>Edit Friends</h3>
+            <form action="/friends/{{ $friend['id'] }}" method="POST">
+              @csrf
+              @method('PUT')
+              <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama') ? old('nama') : $friend['nama'] }}">
+                @error('nama')
+                <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
+              </div>
+              <div class="mb-3">
+                <label for="no_telp" class="form-label">No Telp</label>
+                <input type="text" class="form-control" id="no_telp" name="no_telp" value="{{ old('no_telp') ? old('no_telp') : $friend['no_telp'] }}">
+                @error('no_telp')
+                <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
+              </div>
+              <div class="mb-3">
+                <label for="alamat" class="form-label">Alamat</label>
+                <input type="text" class="form-control" id="alamat" name="alamat" value="{{ old('alamat') ? old('alamat') : $friend['alamat'] }}">
+                @error('alamat')
+                <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
+              </div>
+             
+              <button type="submit" class="btn btn-info">Submit</button>
+            </form>
+          </div>
+        </div>
         
 @endsection 
